@@ -1,0 +1,27 @@
+@import "tailwindcss";
+@theme {
+  /*  ✒️ FONTS  */
+  --font-inter: Inter;
+  --font-gluten: Gluten, cursive;
+
+  /* 🎨 COLORS  */
+  --color-primary: #03020a;
+  --color-secondary: #9f67ff;
+  --color-tertiary: #1d1d1e;
+
+  /* gray  */
+  --color-gray-1000: #363638;
+
+  /* blue  */
+  --color-blue-1000: #657efc;
+
+  /* green  */
+  --color-green-1000: #d2e991;
+
+  /* yellow */
+  --color-yellow-1000: #f5c05c;
+}
+
+.dashboard-card {
+  @apply bg-tertiary   py-3  px-4 rounded-3xl;
+}

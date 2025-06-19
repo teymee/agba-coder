@@ -1,17 +1,20 @@
 import axios from "axios";
+import { getLocalStorage } from "./localStorageServices";
 
 const axiosInstance = axios.create({
   // eslint-disable-next-line no-undef
-  baseURL: process.env.REACT_APP_BASE_URL,
+  baseURL:  import.meta.env.VITE_NODE_URL,
   withCredentials: true,
 });
 
 //🚨 Request interceptor
 axiosInstance.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("token");
+    const token = getLocalStorage("tokenDetails")?.token;
     if (token) {
       config.headers["Authorization"] = `Bearer ${token}`;
+      config.headers["Content-Type"] = "application/json";
+      config.headers["Accept"] = "application/json";  
     }
     return config;
   },
@@ -34,3 +37,5 @@ axiosInstance.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
+export default axiosInstance;
