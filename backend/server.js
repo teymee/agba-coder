@@ -20,15 +20,21 @@ const PORT = process.env.PORT;
 const BASE_URL = process.env.BASE_URL;
 
 // Reusable function to call WakaTime API
-const proxyDomain = async (req, endpoint) => {
+const proxyDomain = async (req, endpoint, params) => {
   const token = req.headers.authorization?.split(" ")[1];
-  // console.log(`${BASE_URL}/${endpoint}`, "mmm");
-  const res = await fetch(`${BASE_URL}/${endpoint}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Cache-Control": "no-cache",
-    },
-  });
+  const queryParams = new URLSearchParams(params || {}).toString();
+
+  const res = await fetch(
+    `${BASE_URL}/${endpoint}${queryParams ? `?${queryParams}` : ""}`,
+
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Cache-Control": "no-cache",
+      },
+      params: new URLSearchParams(params || {}),
+    }
+  );
 
   const data = await res.json(); // parse the response body
 
@@ -67,11 +73,10 @@ app.get(APIs.statsAggregated, async (req, res) => {
 });
 
 app.get(APIs.statSummary, async (req, res) => {
+  let params = req.query || {};
+  console.log;
   try {
-    const data = await proxyDomain(
-      req,
-      `${APIs.statSummary}?range=last_7_days`
-    );
+    const data = await proxyDomain(req, `${APIs.statSummary}`, params);
     res.json(data);
   } catch (err) {
     handleError(res, err);
@@ -91,6 +96,16 @@ app.get(APIs.statusBar, async (req, res) => {
 app.get(APIs.projectList, async (req, res) => {
   try {
     const data = await proxyDomain(req, `${APIs.projectList}`);
+    res.json(data);
+  } catch (err) {
+    handleError(res, err);
+  }
+});
+
+app.get(APIs.commitList.base, async (req, res) => {
+  const { projectId } = req.query;
+  try {
+    const data = await proxyDomain(req, APIs.commitList.api(projectId));
     res.json(data);
   } catch (err) {
     handleError(res, err);

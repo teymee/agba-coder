@@ -7,6 +7,8 @@ import { store } from "./store/index.js";
 import '@/assets/tailwind-assets/theme.css'
 import 'primeicons/primeicons.css';
 
+import 'primereact/resources/themes/saga-blue/theme.css';  // or your theme
+import 'primereact/resources/primereact.min.css';
 createRoot(document.getElementById("root")).render(
   <Provider store={store}>
     <StrictMode>

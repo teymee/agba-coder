@@ -14,8 +14,12 @@ export const getStatsAggregated = createAsyncThunk(
 
 export const getStatSummaries = createAsyncThunk(
   "dashboard/getStatSummaries",
-  async () => {
-    const response = await axiosInstance.get(APIs.statSummary);
+  async (paramList) => {
+    const params = {
+      ...paramList,
+      range: "last_7_days" 
+    }
+    const response = await axiosInstance.get(APIs.statSummary, { params });
     return response?.data;
   }
 );

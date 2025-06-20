@@ -45,7 +45,7 @@ export default function Navbar() {
   return (
     <nav className="">
       {/* 🚨 Mobile screen  */}
-      <section className=" [ lg:hidden absolute bottom-10 w-[90%] left-[50%] translate-x-[-50%] rounded-full  bg-[#2C2C2C] ] ">
+      <section className=" [ lg:hidden absolute bottom-10 w-[90%] left-[50%] translate-x-[-50%] rounded-full  bg-[#2C2C2C] ] z-50 ">
         <section className="flex justify-between items-center  px-8  h-14">
           {links.map((item) => {
             return (

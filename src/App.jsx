@@ -7,7 +7,9 @@ import RedirectURI from "./pages/Auth/RedirectURI";
 import Dashboard from "./pages/Dashboard";
 import MasterLayout from "./components/MasterLayout/MasterLayout";
 import Statistics from "./pages/Statistics";
-import Projects from "./pages/Projects";
+import Projects from "./pages/Projects/Projects";
+import Commits from "./pages/Projects/Commits";
+import ProjectDetails from "./pages/Projects/ProjectDetails";
 
 function App() {
   const routes = createBrowserRouter([
@@ -37,6 +39,14 @@ function App() {
         {
           path: "projects",
           element: <Projects />,
+        },
+          {
+          path: "project/:name/:projectId",
+          element: <ProjectDetails/>,
+        },
+        {
+          path: "commits/:projectId",
+          element: <Commits />,
         },
       ],
     },

@@ -29,11 +29,10 @@ axiosInstance.interceptors.response.use(
     return response;
   },
   (error) => {
-    if (error.response.status === 401) {
-      // Handle unauthorized access, e.g., redirect to login
-      console.error("Unauthorized access - redirecting to login");
-      window.location.href = "/login"; // Adjust the path as needed
-    }
+    // if (error.response.status === 401) {
+    //   console.error("Unauthorized access - redirecting to login");
+    //   window.location.href = "/login"; // Adjust the path as needed
+    // }
     return Promise.reject(error);
   }
 );
