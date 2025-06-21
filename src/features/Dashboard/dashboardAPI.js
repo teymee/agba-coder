@@ -17,8 +17,8 @@ export const getStatSummaries = createAsyncThunk(
   async (paramList) => {
     const params = {
       ...paramList,
-      range: "last_7_days" 
-    }
+      range: "last_7_days",
+    };
     const response = await axiosInstance.get(APIs.statSummary, { params });
     return response?.data;
   }
@@ -31,3 +31,7 @@ export const getStatusBar = createAsyncThunk(
     return response?.data;
   }
 );
+export const getGoals = createAsyncThunk("dashboard/getGoals", async () => {
+  const response = await axiosInstance.get(APIs.goals);
+  return response?.data;
+});

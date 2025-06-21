@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
+  getGoals,
   getStatsAggregated,
   getStatSummaries,
   getStatusBar,
@@ -15,6 +16,11 @@ const initialState = {
     isLoading: false,
   },
   statusBar: {
+    data: null,
+    isLoading: false,
+  },
+
+  goals: {
     data: null,
     isLoading: false,
   },
@@ -54,6 +60,16 @@ const dashboardSlice = createSlice({
       .addCase(getStatusBar.fulfilled, (state, { payload }) => {
         state.statusBar.data = payload;
         state.statusBar.isLoading = false;
+      });
+
+    // 🚨 STATUS BAR
+    builder
+      .addCase(getGoals.pending, (state) => {
+        state.goals.isLoading = true;
+      })
+      .addCase(getGoals.fulfilled, (state, { payload }) => {
+        state.goals.data = payload;
+        state.goals.isLoading = false;
       });
   },
 });

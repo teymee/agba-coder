@@ -3,6 +3,7 @@ export const APIs = {
   statsAggregated: "/stats/2024",
   statSummary: "/users/current/summaries",
   statusBar: "/users/current/status_bar/today",
+  goals: "/users/current/goals",
 
   // 🚨Projects
   projectList: "/users/current/projects",

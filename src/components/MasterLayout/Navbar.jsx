@@ -14,21 +14,9 @@ export default function Navbar() {
     },
 
     {
-      name: "Statistics",
-      link: "/statistics",
-      icon: "pi-chart-pie",
-    },
-
-    {
       name: "Projects",
       link: "/projects",
       icon: "pi-chart-pie",
-    },
-
-    {
-      name: "Goals",
-      link: "/goals",
-      icon: "pi-bullseye",
     },
   ];
 

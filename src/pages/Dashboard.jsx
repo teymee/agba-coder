@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getDashboardStore } from "../features/Dashboard/dashboardSlice";
 import {
+  getGoals,
   getStatsAggregated,
   getStatSummaries,
   getStatusBar,
@@ -17,6 +18,7 @@ export default function Dashboard() {
     dispatch(getStatsAggregated());
     dispatch(getStatSummaries());
     dispatch(getStatusBar());
+    dispatch(getGoals());
   }, [dispatch]);
 
   return (

@@ -6,7 +6,6 @@ import Login from "./pages/Auth/Login";
 import RedirectURI from "./pages/Auth/RedirectURI";
 import Dashboard from "./pages/Dashboard";
 import MasterLayout from "./components/MasterLayout/MasterLayout";
-import Statistics from "./pages/Statistics";
 import Projects from "./pages/Projects/Projects";
 import Commits from "./pages/Projects/Commits";
 import ProjectDetails from "./pages/Projects/ProjectDetails";
@@ -31,23 +30,22 @@ function App() {
           path: "dashboard",
           element: <Dashboard />,
         },
-        {
-          path: "statistics",
-          element: <Statistics />,
-        },
+    
 
         {
           path: "projects",
           element: <Projects />,
         },
-          {
+        {
           path: "project/:name/:projectId",
-          element: <ProjectDetails/>,
+          element: <ProjectDetails />,
         },
         {
           path: "commits/:projectId",
           element: <Commits />,
         },
+
+     
       ],
     },
   ]);

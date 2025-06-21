@@ -14,8 +14,40 @@ import { Chart } from "primereact/chart";
 export default function Header() {
   const firstRow = useRef(null);
   const secondRow = useRef(null);
-  const { statsAgg, summaries, statusBar } = useSelector(getDashboardStore);
+  const {
+    statsAgg,
+    summaries,
+    statusBar,
+    goals: { data: goalsData },
+  } = useSelector(getDashboardStore);
 
+  // 🚨 goals store
+
+  const firstGoal = goalsData?.data?.[0];
+  const { cumulative_status, ignore_days, title } = firstGoal ?? {};
+  const goalGraph = {
+    labels: firstGoal?.chart_data?.map((item) => item?.range?.text),
+    datasets: [
+      {
+        label: "Goal Progress",
+        data: firstGoal?.chart_data?.map((item) => item?.actual_seconds / 3600),
+        backgroundColor: [
+          "rgba(255, 159, 64, 0.2)",
+          "rgba(75, 192, 192, 0.2)",
+          "rgba(54, 162, 235, 0.2)",
+          "rgba(153, 102, 255, 0.2)",
+        ],
+        borderColor: [
+          "rgb(255, 159, 64)",
+          "rgb(75, 192, 192)",
+          "rgb(54, 162, 235)",
+          "rgb(153, 102, 255)",
+        ],
+        borderWidth: 1,
+      },
+    ],
+  };
+  console.log(firstGoal, "goalsData");
   // 🚨 statusBar store
   const langDonut = statusBar?.data?.data?.languages;
 
@@ -57,7 +89,6 @@ export default function Header() {
     },
   ];
 
-  console.log(userMachineDetails, "hhhhhhhh");
   // 🚨statsAgg store
   const topFiveLanguages =
     statsAgg?.data?.data?.languages
@@ -360,6 +391,32 @@ export default function Header() {
           </section>
         </section>
       </section>
+      {/*  */}
+
+      {/* THIRD ROW  */}
+
+      <section className=" dashboard-card !rounded-bl-none  p-3">
+        <div>
+          <h1>GOALS GRAPH</h1>
+          <div> Status: {cumulative_status}</div>
+          <div>Ignore days: {ignore_days}</div>
+          <div>Title: {title}</div>
+          <Chart type="bar" data={goalGraph} options={chartOptions} />
+        </div>
+      </section>
+
+      {/*  */}
+
+      
+      {/* THIRD ROW  */}
+
+      <section className=" dashboard-card !rounded-bl-none  p-3">
+        <div>
+          <h1>INSIGHTS GRAPH (WEEKLY GRAPH DETAILS FOR THE YEAR)</h1>
+          <Chart type="bar" data={goalGraph} options={chartOptions} />
+        </div>
+      </section>
+
       {/*  */}
     </section>
   );

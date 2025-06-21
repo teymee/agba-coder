@@ -92,6 +92,15 @@ app.get(APIs.statusBar, async (req, res) => {
   }
 });
 
+app.get(APIs.goals, async (req, res) => {
+  try {
+    const data = await proxyDomain(req, `${APIs.goals}`);
+    res.json(data);
+  } catch (err) {
+    handleError(res, err);
+  }
+});
+
 // 🚨 PROJECTS
 app.get(APIs.projectList, async (req, res) => {
   try {
