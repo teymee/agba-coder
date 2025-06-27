@@ -3,11 +3,11 @@ export const truncateString = (str, length, isBackwards = false) => {
   if (isBackwards) {
     return str.slice(str.length - length, str.length);
   } else {
-    return str.slice(0, length);
+    return `${str.slice(0, length)}${ str.length < length ? '': '...'}`;
   }
 };
 
-export const timeConverstion = (time) => {
+export const formatTime = (time) => {
   if (!time) return "";
   const totalMinutes = Math.floor(time * 60);
   const hrs = Math.floor(totalMinutes / 60);

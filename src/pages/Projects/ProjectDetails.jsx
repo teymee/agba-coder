@@ -7,7 +7,7 @@ import { Chart } from "primereact/chart";
 import { ProgressBar } from "primereact/progressbar";
 
 import { Progress, Tooltip } from "antd";
-import { timeConverstion, truncateString } from "../../utils/generalUtils";
+import { formatTime, truncateString } from "../../utils/generalUtils";
 
 export default function ProjectDetails() {
   const dispatch = useDispatch();
@@ -259,7 +259,7 @@ export default function ProjectDetails() {
                             <p>{name}</p>
                           </div>
 
-                          <p> {timeConverstion(hours)}</p>
+                          <p> {formatTime(hours)}</p>
                         </div>
                         <div>
                           <ProgressBar value={percent} />
@@ -285,7 +285,7 @@ export default function ProjectDetails() {
                           </p>
                         </Tooltip>
 
-                        <p>{timeConverstion(hours)} </p>
+                        <p>{formatTime(hours)} </p>
                       </div>
 
                       <Progress

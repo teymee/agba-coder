@@ -1,9 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
   getGoals,
+  getInsight,
   getStatsAggregated,
   getStatSummaries,
   getStatusBar,
+  getUserDetails,
 } from "./dashboardAPI";
 
 const initialState = {
@@ -21,6 +23,15 @@ const initialState = {
   },
 
   goals: {
+    data: null,
+    isLoading: false,
+  },
+  userDetails: {
+    data: null,
+    isLoading: false,
+  },
+
+  insight: {
     data: null,
     isLoading: false,
   },
@@ -70,6 +81,26 @@ const dashboardSlice = createSlice({
       .addCase(getGoals.fulfilled, (state, { payload }) => {
         state.goals.data = payload;
         state.goals.isLoading = false;
+      });
+
+    // 🚨 USER
+    builder
+      .addCase(getUserDetails.pending, (state) => {
+        state.userDetails.isLoading = true;
+      })
+      .addCase(getUserDetails.fulfilled, (state, { payload }) => {
+        state.userDetails.data = payload;
+        state.userDetails.isLoading = false;
+      });
+
+    // 🚨INSIGHT
+    builder
+      .addCase(getInsight.pending, (state) => {
+        state.insight.isLoading = true;
+      })
+      .addCase(getInsight.fulfilled, (state, { payload }) => {
+        state.insight.data = payload;
+        state.insight.isLoading = false;
       });
   },
 });

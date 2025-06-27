@@ -3,9 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { getDashboardStore } from "../features/Dashboard/dashboardSlice";
 import {
   getGoals,
+  getInsight,
   getStatsAggregated,
   getStatSummaries,
   getStatusBar,
+  getUserDetails,
 } from "../features/Dashboard/dashboardAPI";
 import Header from "../features/Dashboard/components/Header";
 
@@ -19,6 +21,8 @@ export default function Dashboard() {
     dispatch(getStatSummaries());
     dispatch(getStatusBar());
     dispatch(getGoals());
+    dispatch(getUserDetails())
+    dispatch(getInsight())
   }, [dispatch]);
 
   return (

@@ -101,6 +101,15 @@ app.get(APIs.goals, async (req, res) => {
   }
 });
 
+app.get(APIs.insight, async (req, res) => {
+  try {
+    const data = await proxyDomain(req, `${APIs.insight}`);
+    res.json(data);
+  } catch (err) {
+    handleError(res, err);
+  }
+});
+
 // 🚨 PROJECTS
 app.get(APIs.projectList, async (req, res) => {
   try {
@@ -115,6 +124,16 @@ app.get(APIs.commitList.base, async (req, res) => {
   const { projectId } = req.query;
   try {
     const data = await proxyDomain(req, APIs.commitList.api(projectId));
+    res.json(data);
+  } catch (err) {
+    handleError(res, err);
+  }
+});
+
+// 🚨 User details 
+app.get(APIs.userDetails, async (req, res) => {
+  try {
+    const data = await proxyDomain(req, APIs.userDetails);
     res.json(data);
   } catch (err) {
     handleError(res, err);

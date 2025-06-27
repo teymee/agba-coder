@@ -35,3 +35,16 @@ export const getGoals = createAsyncThunk("dashboard/getGoals", async () => {
   const response = await axiosInstance.get(APIs.goals);
   return response?.data;
 });
+
+export const getUserDetails = createAsyncThunk("dashboard/getUserDetails", async () => {
+  const response = await axiosInstance.get(APIs.userDetails);
+  
+  return response?.data?.data;
+});
+
+export const getInsight = createAsyncThunk("dashboard/getInsight", async () => {
+  const response = await axiosInstance.get(APIs.insight);
+  
+  return response?.data?.data;
+});
+

@@ -23,5 +23,9 @@
 }
 
 .dashboard-card {
-  @apply bg-tertiary   py-3  px-4 rounded-3xl;
+  @apply bg-tertiary   py-3  px-4 rounded-xl;
+}
+
+.gradient-card {
+  @apply absolute  h-[300px]  -translate-x-[50%] left-[50%] rounded-3xl  py-8 px-6 z-0;
 }
